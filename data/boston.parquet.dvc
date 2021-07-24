@@ -1,0 +1,4 @@
+outs:
+- md5: 2820c7c3ec849a654e0e03f518a9444b
+  size: 62884
+  path: boston.parquet
