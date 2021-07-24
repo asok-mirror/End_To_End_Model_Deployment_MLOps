@@ -1,7 +1,7 @@
 # boston/config.py 
 # configurations.
 
-import logging
+import logging.config
 import sys
 from pathlib import Path
 from rich.logging import RichHandler
