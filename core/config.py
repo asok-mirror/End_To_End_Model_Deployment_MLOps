@@ -1,4 +1,4 @@
-# boston/config.py 
+# core/config.py 
 # configurations.
 
 import logging.config
