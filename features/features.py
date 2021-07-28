@@ -12,7 +12,7 @@ import config
 # Read data
 START_TIME = "2021-07-23"
 feature_source = FileSource(
-    path=str(Path(config.DATA_DIR, "boston.parquet")),
+    path=str(Path(config.DATA_DIR, "features.parquet")),
     event_timestamp_column="CREATED_TIME"
 )
 
