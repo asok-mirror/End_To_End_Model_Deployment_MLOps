@@ -5,3 +5,6 @@ https://stackoverflow.com/questions/35709497/anaconda-python-where-are-the-virtu
 
 # configure jypyter to use git bash in windows 
 https://stackoverflow.com/questions/52330492/how-to-change-jupyter-notebook-windows-shell-to-bash
+
+# materialize the data between time ranges
+feast materialize 2020-01-01T00:00:00 2021-07-29T00:00:00
