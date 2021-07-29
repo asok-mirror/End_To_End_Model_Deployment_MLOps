@@ -23,6 +23,6 @@ def download_data():
         utils.download_and_save_data_from_url(
             url=config.FILE_SOURCE, path=config.DATA_DIR, file_name=config.FILE_NAME
         )
-        logger.info("Dataset Downloaded!")
+        logger.info("Dataset downloaded!")
     except Exception as ex:
-        logger.error("error in downloading file", ex)
+        logger.error("Error in downloading file", ex)
