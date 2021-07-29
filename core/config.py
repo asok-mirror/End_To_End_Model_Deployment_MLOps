@@ -6,6 +6,10 @@ import sys
 from pathlib import Path
 from rich.logging import RichHandler
 
+# Constants
+FILE_NAME = 'credit_card_transactions.csv'
+FILE_SOURCE = 'https://web.cs.dal.ca/~kalisamy/Dataset/credit_card_transactions.csv'
+
 # Directories
 BASE_DIR = Path(__file__).parent.parent.absolute()
 CONFIG_DIR = Path(BASE_DIR, "config")
