@@ -8,3 +8,9 @@ https://stackoverflow.com/questions/52330492/how-to-change-jupyter-notebook-wind
 
 # materialize the data between time ranges
 feast materialize 2020-01-01T00:00:00 2021-07-29T00:00:00
+
+# Styling and Formatting code
+black .
+flake8
+isort .
+
