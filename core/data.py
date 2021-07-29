@@ -2,10 +2,9 @@
 # preprocess the data
 # store it to feature store
 
-import os
-from pathlib import Path
-import config
 import utils
+
+import config
 from config import logger
 
 
@@ -16,15 +15,14 @@ def download_data():
         Exception: Error during downloading file from source.
     """
 
-    # if dataset already present then delete it   
+    # if dataset already present then delete it
     utils.delete_file(config.DATA_DIR + config.FILE_NAME)
 
     try:
-        #download and save dataset
+        # download and save dataset
         utils.download_and_save_data_from_url(
-            url=config.FILE_SOURCE,
-            path=config.DATA_DIR,
-            file_name=config.FILE_NAME)
+            url=config.FILE_SOURCE, path=config.DATA_DIR, file_name=config.FILE_NAME
+        )
         logger.info("Dataset Downloaded!")
     except Exception as ex:
         logger.error("error in downloading file", ex)

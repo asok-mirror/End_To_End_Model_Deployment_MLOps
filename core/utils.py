@@ -1,4 +1,4 @@
-#Utilities file
+# Utilities file
 
 import urllib.request
 from pathlib import Path
@@ -18,7 +18,7 @@ def delete_file(filePath: str) -> None:
     """Delete the file from the path
 
     Args:
-        filePath (str): location of the file 
+        filePath (str): location of the file
     """
 
     # if dataset already present delete it

@@ -1,14 +1,15 @@
-# core/config.py 
+# core/config.py
 # configurations.
 
 import logging.config
 import sys
 from pathlib import Path
+
 from rich.logging import RichHandler
 
 # Constants
-FILE_NAME = 'credit_card_transactions.csv'
-FILE_SOURCE = 'https://web.cs.dal.ca/~kalisamy/Dataset/credit_card_transactions.csv'
+FILE_NAME = "credit_card_transactions.csv"
+FILE_SOURCE = "https://web.cs.dal.ca/~kalisamy/Dataset/credit_card_transactions.csv"
 
 # Directories
 BASE_DIR = Path(__file__).parent.parent.absolute()
@@ -21,7 +22,7 @@ STORES_DIR = Path(BASE_DIR, "stores")
 # Local stores
 BLOB_STORE = Path(STORES_DIR, "blob")
 FEATURE_STORE = Path(STORES_DIR, "feature")
-MODEL_REGISTRY = Path(STORES_DIR, 'model')
+MODEL_REGISTRY = Path(STORES_DIR, "model")
 
 # Create dirs
 CONFIG_DIR.mkdir(parents=True, exist_ok=True)
@@ -78,4 +79,3 @@ logging_config = {
 logging.config.dictConfig(logging_config)
 logger = logging.getLogger("root")
 logger.handlers[0] = RichHandler(markup=True)
-
