@@ -8,8 +8,8 @@ from feast import Entity, Feature, FeatureView, ValueType
 from feast.data_source import FileSource
 from google.protobuf.duration_pb2 import Duration
 
-sys.path.insert(0, "C:\\toolbox\\ML OPS\\End_To_End_Model_Deployment_MLOps\\core")  # TBU
-print(sys.path)  # TBU
+#sys.path.insert(0, "C:\\toolbox\\ML OPS\\End_To_End_Model_Deployment_MLOps\\core")  # TBU
+#print(sys.path)  # TBU
 import config
 
 # Read data
