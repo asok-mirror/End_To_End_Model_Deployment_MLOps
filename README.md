@@ -1,4 +1,4 @@
-This is a solution base on how to design a scable ML App with end to end Machine Learning Life Cycle - MLOPS
+This is a solution base on how to design a scalable ML App with end to end Machine Learning Life Cycle - MLOPS
 
 # Feast 
 Feast ML - feature Store- https://docs.feast.dev/getting-started/create-a-feature-repository
