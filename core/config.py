@@ -10,6 +10,7 @@ from rich.logging import RichHandler
 # Constants
 FILE_NAME = "credit_card_transactions.csv"
 FILE_SOURCE = "https://web.cs.dal.ca/~kalisamy/Dataset/credit_card_transactions.csv"
+MODEL_NAME = "model.pkl"
 
 # Directories
 BASE_DIR = Path(__file__).parent.parent.absolute()

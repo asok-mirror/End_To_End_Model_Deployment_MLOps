@@ -77,7 +77,7 @@ def objective(trial):
     Args:
         trial ([type]): No of trials on model pramas
     Raises:
-        optuna.TrialPruned: if trail is pruned
+        optuna.TrialPruned: Early stopping of the optimization trial if poor performance.
 
     Returns:
         [type]: mean cv score
