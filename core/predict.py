@@ -11,7 +11,7 @@ JSONType = Union[
 ]
 
 
-def predict(data: Union[List[List[int]], np.ndarray]) -> str:
+def predict(data: Union[List[List[float]], np.ndarray]) -> str:
     """Gets the Prediction 
 
     Returns:
@@ -30,7 +30,7 @@ def form_response(request: Dict) -> str:
         [type]: predicted value
     """
     data = request.values()
-    data = [list(map(int, data))]
+    data = [list(map(float, data))]
     return predict(data)
 
 
