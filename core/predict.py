@@ -5,10 +5,10 @@ import numpy as np
 import utils
 from typing import Dict, Union, List, Any
 
-JSONType = Union[
-    Dict[str, Any],
-    List[dict, Any],
-]
+# JSONType = Union[
+#     Dict[str, Any],
+#     List[dict, Any],
+# ]
 
 
 def predict(data: Union[List[List[float]], np.ndarray]) -> str:
@@ -34,7 +34,7 @@ def form_response(request: Dict) -> str:
     return predict(data)
 
 
-def api_response(request: JSONType) -> str:
+def api_response(request) -> str:
     """Gets the Prediction from api call
 
     Returns:
