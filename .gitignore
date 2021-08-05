@@ -103,3 +103,4 @@ site/
 
 # Airflow
 airflow/airflow.db
+airflow/airflow-webserver.pid

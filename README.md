@@ -17,6 +17,20 @@ black .
 flake8
 isort .
 
+# Airflow
+export AIRFLOW_HOME=${PWD}/airflow
+AIRFLOW_VERSION=2.1.2
+PYTHON_VERSION="$(python --version | cut -d " " -f 2 | cut -d "." -f 1-2)"
+# For example: 3.6
+CONSTRAINT_URL="https://raw.githubusercontent.com/apache/airflow/constraints-${AIRFLOW_VERSION}/constraints-no-providers-${PYTHON_VERSION}.txt"
+# For example: https://raw.githubusercontent.com/apache/airflow/constraints-no-providers-2.1.2/constraints-3.6.txt
+pip install "apache-airflow==${AIRFLOW_VERSION}" --constraint "${CONSTRAINT_URL}"
+
+# Launch Airflow webserver
+export AIRFLOW_HOME=${PWD}/airflow
+airflow webserver --port 8082
+
+airflow db init
 <div align="center">
 <h1>Work In Progress</h1>
 </div>
