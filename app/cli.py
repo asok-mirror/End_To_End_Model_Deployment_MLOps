@@ -2,8 +2,10 @@
 from typing import Optional
 import typer
 import warnings
-import sys
-sys.path.insert(0, "C:\\toolbox\\ML OPS\\End_To_End_Model_Deployment_MLOps\\core")  # TBU
+import sys, os
+sys.path.insert(0, '/c/toolbox/ML OPS/End_To_End_Model_Deployment_MLOps/core')
+print(sys.path)  # TBU
+#sys.path.insert(0, "C:\\toolbox\\ML OPS\\End_To_End_Model_Deployment_MLOps\\core")  # TBU
 # print(sys.path)  # TBU
 import data, train_and_optimize, predict as predict_transaction
 from config import logger

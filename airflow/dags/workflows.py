@@ -5,14 +5,6 @@ from airflow.operators.bash_operator import BashOperator
 from airflow.operators.python import BranchPythonOperator, PythonOperator, task
 from airflow.utils.dates import days_ago
 from sqlalchemy.sql.elements import Extract
-import os
-# sys.path.insert(0, "/c/toolbox/ML OPS/End_To_End_Model_Deployment_MLOps/app")  # TBU
-# sys.path.insert(0, "/c/toolbox/ML OPS/End_To_End_Model_Deployment_MLOps/core")  # TBU
-import sys
-sys.path.insert(0, os.path.abspath(os.path.dirname(__file__)))
-print(os.path.abspath(os.path.dirname(__file__)))
-print("asok kalidass *******************************")  # TBU
-print(sys.path)  # TBU
 from app import cli
 from core import config
 
