@@ -11,6 +11,9 @@ from rich.logging import RichHandler
 FILE_NAME = "credit_card_transactions.csv"
 FILE_SOURCE = "https://web.cs.dal.ca/~kalisamy/Dataset/credit_card_transactions.csv"
 MODEL_NAME = "model.pkl"
+REGISTERED_MODEL_NAME = "FradulantCreditTransactions"
+BEST_MODEL_PARAM = "best_model_param.json"
+OPTUNA_TRIALS_COUNT = 1
 
 # Directories
 BASE_DIR = Path(__file__).parent.parent.absolute()
@@ -19,6 +22,8 @@ LOGS_DIR = Path(BASE_DIR, "logs")
 DATA_DIR = Path(BASE_DIR, "data")
 MODEL_DIR = Path(BASE_DIR, "model")
 STORES_DIR = Path(BASE_DIR, "stores")
+ARTIFACTS_DIR = Path(BASE_DIR, "artifacts")
+
 
 # Local stores
 BLOB_STORE = Path(STORES_DIR, "blob")
@@ -31,6 +36,7 @@ LOGS_DIR.mkdir(parents=True, exist_ok=True)
 DATA_DIR.mkdir(parents=True, exist_ok=True)
 MODEL_DIR.mkdir(parents=True, exist_ok=True)
 STORES_DIR.mkdir(parents=True, exist_ok=True)
+ARTIFACTS_DIR.mkdir(parents=True, exist_ok=True)
 BLOB_STORE.mkdir(parents=True, exist_ok=True)
 FEATURE_STORE.mkdir(parents=True, exist_ok=True)
 MODEL_REGISTRY.mkdir(parents=True, exist_ok=True)
