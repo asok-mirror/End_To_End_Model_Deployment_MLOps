@@ -1,0 +1,4 @@
+artifact_location: file:///home/asok/toolbox/mlops/End_To_End_Model_Deployment_MLOps/mlruns/1
+experiment_id: '1'
+lifecycle_stage: active
+name: best
