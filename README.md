@@ -26,11 +26,23 @@ CONSTRAINT_URL="https://raw.githubusercontent.com/apache/airflow/constraints-${A
 # For example: https://raw.githubusercontent.com/apache/airflow/constraints-no-providers-2.1.2/constraints-3.6.txt
 pip install "apache-airflow==${AIRFLOW_VERSION}" --constraint "${CONSTRAINT_URL}"
 
+airflow db init
+
 # Launch Airflow webserver
 export AIRFLOW_HOME=${PWD}/airflow
 airflow webserver --port 8082
 
-airflow db init
+# Kill Process
+
+--windows
+netstat -ano|findstr "PID :5000"
+taskkill /pid 18264 /f
+
+--Linux
+sudo lsof -i:5000
+sudo kill PID
+
+
 <div align="center">
 <h1>Work In Progress</h1>
 </div>
