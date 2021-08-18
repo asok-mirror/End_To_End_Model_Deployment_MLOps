@@ -1,6 +1,5 @@
-import config
 import numpy as np
-import utils
+from core import utils, config
 from typing import Dict, Union, List, Any
 from pathlib import Path
 import mlflow

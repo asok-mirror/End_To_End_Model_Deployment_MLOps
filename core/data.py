@@ -4,9 +4,8 @@
 
 from typing import Dict, List
 from pandas.core.frame import DataFrame
-import utils
-import config
-from config import logger
+from core import utils, config
+from core.config import logger
 import pandas as pd
 from feast import FeatureStore
 from datetime import datetime
@@ -21,6 +20,7 @@ feature_refs = [
     "credit_card_transactions:V5",
     "credit_card_transactions:Time",
     "credit_card_transactions:Amount",
+    "credit_card_transactions:Class",
 ],
 
 
@@ -86,4 +86,4 @@ def get_feature_entity_df() -> DataFrame:
     entity_df = pd.DataFrame.from_dict({"customer_id": customer_tran_id, "event_timestamp": timestamps})
     # print(entity_df.head())
     logger.info("feature entity is fetched")
-    return entity_df
+    return entity_df.head(500) #added for testing to be removed

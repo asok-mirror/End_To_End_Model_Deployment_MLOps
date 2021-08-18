@@ -3,7 +3,7 @@
 import urllib.request
 from pathlib import Path
 import os
-import config
+from core import config
 import joblib
 from typing import Any, Dict
 import json
@@ -37,7 +37,8 @@ def get_data_source_path() -> str:
     Returns:
         str: data source path
     """
-    return os.path.join(os.path.dirname(os.getcwd()), os.path.join(Path(config.DATA_DIR), config.FILE_NAME))
+    return Path(config.DATA_DIR, config.FILE_NAME)
+    #return os.path.join(os.path.dirname(os.getcwd()), os.path.join(Path(config.DATA_DIR), config.FILE_NAME))
 
 
 def load_model(model_path, model_name) -> Any:

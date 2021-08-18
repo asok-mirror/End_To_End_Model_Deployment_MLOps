@@ -1,8 +1,8 @@
 from pandas.core.frame import DataFrame
 from sklearn.metrics import classification_report, roc_auc_score, average_precision_score, precision_recall_curve, roc_curve
 from sklearn.pipeline import Pipeline
-import config
-from config import logging
+from core import config
+from core.config import logging
 from typing import Any
 import matplotlib.pyplot as plt
 from pathlib import Path

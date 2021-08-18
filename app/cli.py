@@ -3,12 +3,12 @@ from typing import Optional
 import typer
 import warnings
 import sys, os
-sys.path.insert(0, '/c/toolbox/ML OPS/End_To_End_Model_Deployment_MLOps/core')
+#sys.path.insert(0, '/home/asok/toolbox/mlops/End_To_End_Model_Deployment_MLOps/core')
 print(sys.path)  # TBU
 #sys.path.insert(0, "C:\\toolbox\\ML OPS\\End_To_End_Model_Deployment_MLOps\\core")  # TBU
 # print(sys.path)  # TBU
-import data, train_and_optimize, predict as predict_transaction
-from config import logger
+from core import data, optimize, train, predict as predict_transaction
+from core.config import logger
 
 # Ignore warning
 warnings.filterwarnings("ignore")
@@ -26,18 +26,25 @@ def get_data() -> None:
 
 
 @app.command()
-def train_model() -> None:
-    """train and presist the model
+def optimize() -> None:
+    """find the best model hyperparameter 
     """
-    train_and_optimize.optimize_model()
-    logger.info("Cli: Model Trained!")
+    return optimize.optimize_model()
+    logger.info("Cli: Hyperparameter tuning is performed")
+
+@app.command()
+def train_model() -> None:
+    """Train the model 
+    """
+    train.train_model()
+    logger.info("Cli: Hyperparameter tuning is performed")
 
 
 @app.command()
 def predict(time: Optional[float] = 34681.0, v1: Optional[float] = -0.231080,
             v2: Optional[float] = -3.201858, v3: Optional[float] = -0.674366, v4: Optional[float] = -0.976167,
             v5: Optional[float] = -1.302294, amount: Optional[float] = 810.00) -> str:
-    """[summary]
+    """predit the outcome
 
     Args:
         time (Optional[float], optional): time. Defaults to 34681.0.
