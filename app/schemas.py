@@ -44,7 +44,7 @@ class CreditTransactions(BaseModel):
 class FraudDetection(BaseModel):
     transaction: float = Field(
         ...,
-        const=0,
-        const=1,
+        ge=0,
+        le=1,
         description="fraud detection: 0 (fraud) to 1 (legitimate)",
     )

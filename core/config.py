@@ -10,7 +10,7 @@ from rich.logging import RichHandler
 # Constants
 FILE_NAME = "credit_card_transactions.csv"
 FILE_SOURCE = "https://web.cs.dal.ca/~kalisamy/Dataset/credit_card_transactions.csv"
-MODEL_NAME = "model.pkl"
+MODEL_NAME = "model.joblib"
 REGISTERED_MODEL_NAME = "FradulantCreditTransactions"
 BEST_MODEL_PARAM = "best_model_param.json"
 OPTUNA_TRIALS_COUNT = 1

@@ -61,6 +61,5 @@ def api_response(request) -> str:
     """
     request_dict = request.dict()
     features = np.array([request_dict[f] for f in schemas.feature_names]).reshape(1, -1)
-    data = np.array([list(request.values())])
-    return  predict(data)
+    return  predict(features)
     #return {"response": response}
