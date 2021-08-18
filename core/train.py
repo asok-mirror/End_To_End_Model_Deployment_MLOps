@@ -5,9 +5,8 @@
 # from core.data import get_feature_entity_df
 from typing import Dict, Sequence, Optional
 from pandas.core.frame import DataFrame
-import data
-import config
-from config import logger
+from core import data, config, utils, eval
+from core.config import logger
 from sklearn.ensemble import RandomForestClassifier
 from sklearn.pipeline import Pipeline
 from sklearn.model_selection import train_test_split
@@ -16,11 +15,9 @@ import numpy as np
 import mlflow
 import os
 from pathlib import Path
-import utils
 from urllib.parse import urlparse
 import mlflow
 import mlflow.sklearn
-import eval
 import tempfile
 import joblib
 import pandas as pd
@@ -154,6 +151,8 @@ def train_model(
             mlflow.log_artifacts(tempDir)
 
         open(Path(model_dir, "run_id.txt"), "w").write(run_id)
+        joblib.dump(pipeline, os.path.join(config.MODEL_DIR, 'model.joblib'))
+ 
 
 if __name__ == "__main__":
     train_model()
