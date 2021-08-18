@@ -1,13 +1,13 @@
-
 from typing import Optional
 import typer
 import warnings
 import sys, os
-#sys.path.insert(0, '/home/asok/toolbox/mlops/End_To_End_Model_Deployment_MLOps/core')
+
+# sys.path.insert(0, '/home/asok/toolbox/mlops/End_To_End_Model_Deployment_MLOps/core')
 print(sys.path)  # TBU
-#sys.path.insert(0, "C:\\toolbox\\ML OPS\\End_To_End_Model_Deployment_MLOps\\core")  # TBU
+# sys.path.insert(0, "C:\\toolbox\\ML OPS\\End_To_End_Model_Deployment_MLOps\\core")  # TBU
 # print(sys.path)  # TBU
-from core import data, optimize, train, predict as predict_transaction
+from core import data, optimize, train, serve, predict as predict_transaction
 from core.config import logger
 
 # Ignore warning
@@ -19,31 +19,42 @@ app = typer.Typer()
 
 @app.command()
 def get_data() -> None:
-    """Download and Persist the data
-    """
+    """download and persist the data"""
     data.download_data()
     logger.info("Cli: Dataset downloaded!")
 
 
 @app.command()
 def optimize() -> None:
-    """find the best model hyperparameter 
-    """
+    """find the best model hyperparameter"""
     return optimize.optimize_model()
     logger.info("Cli: Hyperparameter tuning is performed")
 
+
 @app.command()
-def train_model() -> None:
-    """Train the model 
-    """
+def train() -> None:
+    """train the model"""
     train.train_model()
-    logger.info("Cli: Hyperparameter tuning is performed")
+    logger.info("Cli: Model training is completed")
 
 
 @app.command()
-def predict(time: Optional[float] = 34681.0, v1: Optional[float] = -0.231080,
-            v2: Optional[float] = -3.201858, v3: Optional[float] = -0.674366, v4: Optional[float] = -0.976167,
-            v5: Optional[float] = -1.302294, amount: Optional[float] = 810.00) -> str:
+def serve() -> None:
+    """serve the model"""
+    serve.promote_model_to_serving()
+    logger.info("Cli: model is ready for serving")
+
+
+@app.command()
+def predict(
+    time: Optional[float] = 34681.0,
+    v1: Optional[float] = -0.231080,
+    v2: Optional[float] = -3.201858,
+    v3: Optional[float] = -0.674366,
+    v4: Optional[float] = -0.976167,
+    v5: Optional[float] = -1.302294,
+    amount: Optional[float] = 810.00,
+) -> str:
     """predit the outcome
 
     Args:
@@ -58,11 +69,10 @@ def predict(time: Optional[float] = 34681.0, v1: Optional[float] = -0.231080,
     Returns:
         str: Predited value 0 if not a fradulant transaction or 1 if its a fradulant transaction
     """
-    
+
     data = [[time, v1, v2, v3, v4, v5, amount]]
     return predict_transaction.predict(data)
 
 
 if __name__ == "__main__":
     app()
-    

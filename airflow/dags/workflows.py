@@ -79,8 +79,14 @@ def mlops():
     # Training
     train_model = BashOperator(
         task_id="train_model",
-        bash_command=f"cd {config.BASE_DIR}/app && python cli.py optimize",
+        bash_command=f"cd {config.BASE_DIR}/app && python cli.py train",
         xcom_push=True 
+    )
+
+    # Serving
+    serve_model = BashOperator(
+        task_id="serve_model",
+        bash_command=f"cd {config.BASE_DIR}/app && python cli.py serve",
     )
 
     # Evaluate
@@ -102,22 +108,16 @@ def mlops():
     # Deploy
     deploy_model = BashOperator(
         task_id="deploy_model",
-        bash_command="echo 1",  # push to GitHub to kick off deployment workflows
+        bash_command="echo 1",  # push to GitHub to kick off deployment workflows, tbu
     )
 
-    # Reset references for monitoring
-    set_monitoring_references = BashOperator(
-        task_id="set_monitoring_references",
-        bash_command="echo 1",  # tagifai set-monitoring-references
-    )
-
-    # Notifications (use appropriate operators, ex. EmailOperator)
+    # Notifications (tbu)
     notify_teams = BashOperator(task_id="notify_teams", bash_command="echo 1")
     file_report = BashOperator(task_id="file_report", bash_command="echo 1")
 
     # Task relationships
     optimize_model >> train_model >> evaluate_model >> [improved, regressed]
-    improved >> [set_monitoring_references, deploy_model, notify_teams]
+    improved >> [serve_model, deploy_model, notify_teams]
     regressed >> [notify_teams, file_report]
 
 
