@@ -1,6 +1,6 @@
 import numpy as np
 from core import utils, config
-from typing import Dict, Union, List, Any
+from typing import Dict
 from pathlib import Path
 import mlflow
 from app import schemas
@@ -10,22 +10,16 @@ from app import schemas
 #     List[dict, Any],
 # ]
 
-# get model from the Mlflow artifacts
-#artifact_uri = mlflow.get_run(run_id=run_id).info.artifact_uri.split("file://")[-1]
-
-#model = utils.load_model(artifact_uri, config.MODEL_NAME)
-
 model = utils.load_model(config.SERVING_MODEL_DIR, config.MODEL_NAME)
 
+
 def predict(
-    data: Union[List[List[float]], np.ndarray],
-    run_id: str = open(Path(config.MODEL_DIR, "run_id.txt")).read(),
+    data: np.ndarray,
 ) -> str:
     """Gets the Prediction
 
     Args:
-        data (Union[List[List[float]], np.ndarray]): features
-        run_id (str, optional): mlflow run id to fetch model. Defaults to open(Path(config.MODEL_DIR, "run_id.txt")).read().
+        data (np.ndarray]): features
 
     Returns:
         str: Predicted value
@@ -61,5 +55,5 @@ def api_response(request) -> str:
     """
     request_dict = request.dict()
     features = np.array([request_dict[f] for f in schemas.feature_names]).reshape(1, -1)
-    return  predict(features)
-    #return {"response": response}
+    return predict(features)
+    # return {"response": response}

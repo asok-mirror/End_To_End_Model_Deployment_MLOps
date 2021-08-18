@@ -22,6 +22,7 @@ import tempfile
 import joblib
 import pandas as pd
 import matplotlib.image as mpimg
+
 # import seaborn as sns
 # sns.set()
 
@@ -78,7 +79,7 @@ def spit_test_train_data() -> DataFrame:
 
 
 def create_model_pipeline() -> Pipeline:
-    """Creates the model pipeline    
+    """Creates the model pipeline
 
     Returns:
           Pipeline: model pipeline
@@ -95,7 +96,7 @@ def train_model(
     params_path: Path = Path(config.ARTIFACTS_DIR, config.BEST_MODEL_PARAM),
     experiment_name: Optional[str] = "best",
     run_name: Optional[str] = "model",
-    model_dir: Optional[Path] = Path(config.MODEL_DIR)
+    model_dir: Optional[Path] = Path(config.MODEL_DIR),
 ) -> None:
     """Train a model using the best parameters.
 
@@ -109,7 +110,7 @@ def train_model(
     X_train, X_test, y_train, y_test = spit_test_train_data()
 
     # Start run
-    #mlflow.set_tracking_uri(config.REMOTE_SERVER_URI)
+    # mlflow.set_tracking_uri(config.REMOTE_SERVER_URI)
 
     mlflow.set_experiment(experiment_name=experiment_name)
     with mlflow.start_run(run_name=run_name):
@@ -125,12 +126,12 @@ def train_model(
 
         training_score = pipeline.score(X_train, y_train)
 
-        # Evaluations 
+        # Evaluations
 
         training_score = pipeline.score(X_train, y_train)
 
         testing_score = pipeline.score(X_test, y_test)
-        
+
         roc_auc, estimator_report, average_precision = eval.evaluation(pipeline, X_test, y_test)
 
         mlflow.log_params(model_params)
@@ -140,10 +141,10 @@ def train_model(
         mlflow.log_metric("average_precision", average_precision)
 
         with tempfile.TemporaryDirectory() as tempDir:
-            utils.save_dict(model_params, Path(tempDir, 'params.json'))
-            joblib.dump(pipeline, Path(tempDir, 'model.pkl'))
+            utils.save_dict(model_params, Path(tempDir, "params.json"))
+            joblib.dump(pipeline, Path(tempDir, config.MODEL_NAME))
             classification_report = pd.DataFrame.from_dict(estimator_report).transpose()
-            classification_report.to_csv(Path(tempDir, r'classification_report.csv'))
+            classification_report.to_csv(Path(tempDir, r"classification_report.csv"))
             img = mpimg.imread(Path(config.ARTIFACTS_DIR, "roc_curve.png"))
             mpimg.imsave(Path(tempDir, "roc_curve.png"), img)
             img = mpimg.imread(Path(config.ARTIFACTS_DIR, "precision_recall_curve.png"))
@@ -151,8 +152,8 @@ def train_model(
             mlflow.log_artifacts(tempDir)
 
         open(Path(model_dir, "run_id.txt"), "w").write(run_id)
-        joblib.dump(pipeline, os.path.join(config.MODEL_DIR, 'model.joblib'))
- 
+        joblib.dump(pipeline, os.path.join(config.MODEL_DIR, config.MODEL_NAME))
+
 
 if __name__ == "__main__":
     train_model()
