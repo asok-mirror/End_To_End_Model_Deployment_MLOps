@@ -12,8 +12,8 @@ def promote_model_to_serving(run_id: str = open(Path(config.MODEL_DIR, "run_id.t
     """
     artifact_uri = mlflow.get_run(run_id=run_id).info.artifact_uri.split("file://")[-1]
 
-    model_path = Path(artifact_uri, config.MODEL_DIR)
-    serving_model_path = Path(config.BASE_DIR, config.MODEL_DIR)
+    model_path = Path(artifact_uri, config.MODEL_NAME)
+    serving_model_path = Path(config.SERVING_MODEL_DIR, config.MODEL_NAME)
 
     shutil.copy2(model_path, serving_model_path, follow_symlinks=True)
 
