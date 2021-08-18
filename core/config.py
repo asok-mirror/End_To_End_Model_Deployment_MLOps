@@ -23,6 +23,7 @@ DATA_DIR = Path(BASE_DIR, "data")
 MODEL_DIR = Path(BASE_DIR, "model")
 STORES_DIR = Path(BASE_DIR, "stores")
 ARTIFACTS_DIR = Path(BASE_DIR, "artifacts")
+SERVING_MODEL_DIR = Path(BASE_DIR, "serving")
 
 
 # Local stores
@@ -40,6 +41,7 @@ ARTIFACTS_DIR.mkdir(parents=True, exist_ok=True)
 BLOB_STORE.mkdir(parents=True, exist_ok=True)
 FEATURE_STORE.mkdir(parents=True, exist_ok=True)
 MODEL_REGISTRY.mkdir(parents=True, exist_ok=True)
+SERVING_MODEL_DIR.mkdir(parents=True, exist_ok=True)
 
 # Logger
 logging_config = {

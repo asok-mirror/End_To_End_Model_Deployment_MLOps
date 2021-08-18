@@ -3,12 +3,19 @@ from core import utils, config
 from typing import Dict, Union, List, Any
 from pathlib import Path
 import mlflow
+from app import schemas
 
 # JSONType = Union[
 #     Dict[str, Any],
 #     List[dict, Any],
 # ]
 
+# get model from the Mlflow artifacts
+#artifact_uri = mlflow.get_run(run_id=run_id).info.artifact_uri.split("file://")[-1]
+
+#model = utils.load_model(artifact_uri, config.MODEL_NAME)
+
+model = utils.load_model(config.SERVING_MODEL_DIR, config.MODEL_NAME)
 
 def predict(
     data: Union[List[List[float]], np.ndarray],
@@ -24,10 +31,6 @@ def predict(
         str: Predicted value
     """
 
-    # get model from the Mlflow artifacts
-    artifact_uri = mlflow.get_run(run_id=run_id).info.artifact_uri.split("file://")[-1]
-
-    model = utils.load_model(artifact_uri, config.MODEL_NAME)
     prediction = model.predict(data).tolist()[0]
     return prediction
 
@@ -56,7 +59,8 @@ def api_response(request) -> str:
     Returns:
         str: predicted value
     """
-
+    request_dict = request.dict()
+    features = np.array([request_dict[f] for f in schemas.feature_names]).reshape(1, -1)
     data = np.array([list(request.values())])
-    response = predict(data)
-    return {"response": response}
+    return  predict(data)
+    #return {"response": response}
