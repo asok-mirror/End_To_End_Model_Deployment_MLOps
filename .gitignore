@@ -105,3 +105,4 @@ site/
 airflow/airflow.db
 airflow/airflow-webserver.pid
 .passwords
+.samples
