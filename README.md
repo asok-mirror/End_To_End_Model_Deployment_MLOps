@@ -42,6 +42,9 @@ taskkill /pid 18264 /f
 sudo lsof -i:5000
 sudo kill PID
 
+# Great Expectations
+https://docs.greatexpectations.io/docs/deployment_patterns/how_to_run_a_checkpoint_in_airflow
+
 
 <div align="center">
 <h1>Work In Progress</h1>

@@ -35,6 +35,13 @@ def dataops():
         python_callable=cli.get_data
     )
 
+    # Validate data
+    validation_task = BashOperator(
+    task_id='validation_task',
+    bash_command='cd {config.BASE_DIR} && great_expectations --v3-api checkpoint run credit_transactions',
+    fail_task_on_validation_failure=True,
+    )
+
     # Feature Store
     END_TS = "$(date '+%Y-%m-%d %H:%M:%S')"
 
@@ -44,7 +51,7 @@ def dataops():
     )
 
     # Task relationships
-    download_dataset >> materialize_feast_online_store
+    download_dataset >> validation_task >> materialize_feast_online_store
 
 
 def _evaluate_model(ti):
