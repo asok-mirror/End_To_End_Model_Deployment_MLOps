@@ -114,4 +114,4 @@ You need to configure the grafana dashbord to view the metrics as per the metric
 
 #### Future Scope
 
-Looking to incluse active learning in to the pipeline. 
+Looking to include active learning into the pipeline. 
