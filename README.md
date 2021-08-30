@@ -1,4 +1,4 @@
-This is a demonstration solution base on designing a scalable ML App adhering to end to end Machine Learning Life Cycle - MLOPS
+This is a demonstration solution based on designing a scalable ML App adhering to end to end Machine Learning Life Cycle - MLOPS
 
 set python path by creating .env file if you are using VS with MS Python Interpretor
 and created the env and install the requirements 
