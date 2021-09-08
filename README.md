@@ -1,7 +1,7 @@
 This is a demonstration solution based on designing a scalable ML App adhering to end to end Machine Learning Life Cycle - MLOPS
 
 set python path by creating .env file if you are using VS with MS Python Interpretor
-and created the env and install the requirements 
+, create the env file and then install the requirements
 
 #### Configure python path
 ```bash
